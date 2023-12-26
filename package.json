@@ -78,6 +78,6 @@
     "typescript": "~5.3.3"
   },
   "dependencies": {
-    "meow": "^12.1.1"
+    "meow": "^13.0.0"
   }
 }
