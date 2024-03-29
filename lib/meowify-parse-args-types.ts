@@ -42,7 +42,7 @@ type PossiblyOptionalFlag<Flag extends AnyFlag, FlagType> =
         : FlagType | undefined;
 
 export type TypedFlags<Flags extends AnyFlags> = {
-  [F in keyof Flags]: Flags[F] extends { isMultiple: true }
+  [F in keyof Flags]: Flags[F] extends { multiple: true }
     ? PossiblyOptionalFlag<Flags[F], Array<TypedFlag<Flags[F]>>>
     : PossiblyOptionalFlag<Flags[F], TypedFlag<Flags[F]>>
 };

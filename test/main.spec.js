@@ -20,7 +20,7 @@ describe('meowWithSubcommands()', () => {
         },
       },
       {
-        argv: ['foo', 'bar'],
+        args: ['foo', 'bar'],
         name: 'name-of-cli',
         importMeta: import.meta,
       }

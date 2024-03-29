@@ -67,7 +67,7 @@ function setupCommand (name, description, args, meta) {
     },
     logs: {
       type: 'boolean',
-      'default': true,
+      'default': false,
       description: 'Controls log output',
     },
   });

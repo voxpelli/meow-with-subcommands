@@ -21,7 +21,7 @@ export type {
   AnyFlag,
   AnyFlags,
   Flag,
-  FlagExtensions,
+  HelpListExtension,
 } from './lib/flag-types.d.ts';
 
 export type {

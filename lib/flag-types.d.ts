@@ -5,40 +5,51 @@ type ParseArgsOptionConfigDefault = string | boolean | string[] | boolean[] | un
 interface ParseArgsOptionConfig {
   type: ParseArgsOptionConfigType;
   multiple?: boolean | undefined;
-  // Is called "shortFlag" in meow
+  // "shortFlag" in meow
   short?: string | undefined;
   default?: ParseArgsOptionConfigDefault;
 }
 
 type TypeMap = {
-  'string': string|string[],
+  'string': string,
   'boolean': boolean,
   // Meow extension
   // 'number': number|number[],
 }
 
-interface FlagExtensions {
+export interface HelpListExtension {
   listGroup?: string;
   description: string;
-  // Meow extensions
-  // readonly choices?: Type extends unknown[] ? Type : Type[];
-  // readonly isRequired?: boolean;
 }
 
-interface BaseFlag extends ParseArgsOptionConfig, FlagExtensions {}
+// Meow extensions
+// interface FlagExtensions {
+//   readonly choices?: Type extends unknown[] ? Type : Type[];
+//   readonly isRequired?: boolean;
+// }
 
-export interface Flag<
+interface BaseFlag extends ParseArgsOptionConfig, HelpListExtension {}
+
+interface Flag<
   PrimitiveType extends ParseArgsOptionConfigType,
-  DefaultType extends ParseArgsOptionConfigDefault = TypeMap[PrimitiveType],
-  IsMultiple extends boolean = false
+  DefaultType extends TypeMap[PrimitiveType],
 > extends BaseFlag {
   type: PrimitiveType,
   default?: DefaultType,
-  multiple?: IsMultiple,
+  multiple?: false | undefined,
 }
 
-type StringFlag = Flag<'string', string> | Flag<'string', string[], true>;
-type BooleanFlag = Flag<'boolean', never>;
+interface MultiFlag<
+  PrimitiveType extends ParseArgsOptionConfigType,
+  DefaultType extends ParseArgsOptionConfigDefault,
+> extends BaseFlag {
+  type: PrimitiveType,
+  default?: DefaultType,
+  multiple: true,
+}
+
+export type StringFlag = Flag<'string', string> | MultiFlag<'string', string[]>;
+export type BooleanFlag = Flag<'boolean', false>;
 // Meow extension
 // type NumberFlag = Flag<'number', number> | Flag<'number', number[], true>;
 export type AnyFlag = StringFlag | BooleanFlag;// | NumberFlag;
