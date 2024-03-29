@@ -26,20 +26,24 @@ export interface ExtendedParseArgsConfig<Flags extends AnyFlags> extends Omit<Pa
 export interface Options<Flags extends AnyFlags> extends ExtendedParseArgsConfig<Flags>, Meta {}
 
 type TypedFlag<Flag extends AnyFlag> =
-    Flag extends {type: 'number'}
-      ? number
-      : Flag extends {type: 'string'}
+    // Meow extension
+    // Flag extends {type: 'number'}
+    //   ? number
+    //   :
+      Flag extends {type: 'string'}
         ? string
         : Flag extends {type: 'boolean'}
           ? boolean
           : unknown;
 
 type PossiblyOptionalFlag<Flag extends AnyFlag, FlagType> =
-    Flag extends {isRequired: true}
+    // Meow extension
+    // Flag extends {isRequired: true}
+    //   ? FlagType
+    //   :
+    Flag extends {default: unknown}
       ? FlagType
-      : Flag extends {default: any}
-        ? FlagType
-        : FlagType | undefined;
+      : FlagType | undefined;
 
 export type TypedFlags<Flags extends AnyFlags> = {
   [F in keyof Flags]: Flags[F] extends { multiple: true }
