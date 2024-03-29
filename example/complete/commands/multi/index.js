@@ -8,18 +8,17 @@ const description = 'Command with its own subcommands';
 /** @type {import('../../../../index.js').CliSubcommand} */
 export const multi = {
   description,
-  run: async (argv, importMeta, { parentName }) => {
+  run: async (args, meta, { parentName }) => {
     await meowWithSubcommands(
       {
         one,
         two,
       },
       {
-        argv,
-        description,
-        importMeta,
+        args,
         name: parentName + ' multi',
-      }
+      },
+      meta
     );
   },
 };

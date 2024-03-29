@@ -55,8 +55,6 @@ TODO: Generate these docs from the JSDoc instead
 
 ### `meowWithSubcommands(commands, { [aliases], argv, name, ...meowOptions }) => Promise<void>`
 
-### `prepareFlags`
-
 ### `printFlagList`
 
 ### `printHelpList`

@@ -16,8 +16,6 @@ await meowWithSubcommands(
         argv: ['foo', '--strict'],
       },
     },
-    argv: process.argv.slice(2),
-    name: 'name-of-cli',
     importMeta: import.meta,
   }
 );

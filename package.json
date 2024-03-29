@@ -72,12 +72,15 @@
     "npm-run-all2": "^6.1.1",
     "ora": "^8.0.1",
     "pony-cause": "^2.1.10",
+    "redent": "^4.0.0",
     "sinon": "^17.0.1",
     "sinon-chai": "^3.7.0",
+    "trim-newlines": "^5.0.0",
     "type-coverage": "^2.27.0",
     "typescript": "~5.3.3"
   },
   "dependencies": {
-    "meow": "^12.1.1"
+    "normalize-package-data": "^6.0.0",
+    "read-package-up": "^11.0.0"
   }
 }

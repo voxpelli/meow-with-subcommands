@@ -1,6 +1,5 @@
 export {
   defaultFlags,
-  prepareFlags,
 } from './lib/flags.js';
 
 export {
@@ -23,7 +22,7 @@ export type {
   AnyFlags,
   Flag,
   FlagExtensions,
-} from './lib/flags.js';
+} from './lib/flag-types.d.ts';
 
 export type {
   HelpMessageInfo,
@@ -39,8 +38,10 @@ export type {
 export type {
   CliAlias,
   CliAliases,
+  CliMeta,
   CliOptions,
   CliSubcommand,
   CliSubcommands,
   CliSubcommandRun,
-} from './lib/main.js';
+  NormalizedPackageJsonLike,
+} from './lib/main-types.d.ts';

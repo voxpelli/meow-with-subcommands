@@ -1,6 +1,5 @@
 export {
   defaultFlags,
-  prepareFlags,
 } from './lib/flags.js';
 
 export {

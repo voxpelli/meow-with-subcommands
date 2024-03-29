@@ -18,7 +18,6 @@ try {
           argv: ['multi', 'one', '--strict'],
         },
       },
-      argv: process.argv.slice(2),
       name: 'name-of-cli',
       importMeta: import.meta,
     }

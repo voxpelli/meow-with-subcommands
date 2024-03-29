@@ -1,8 +1,11 @@
 /* eslint-disable unicorn/no-process-exit */
 /* eslint-disable no-console */
 
-import meow from 'meow';
+import { trimNewlines } from 'trim-newlines';
+import redent from 'redent';
+
 import { printFlagList } from '../../../../index.js';
+import { meowifyParseArgs } from '../../../../lib/meowify-parse-args.js';
 
 import { validationFlags } from '../../flags/index.js';
 import { InputError } from '../../utils/errors.js';
@@ -10,12 +13,13 @@ import { InputError } from '../../utils/errors.js';
 /** @type {import('../../../../index.js').CliSubcommand} */
 export const one = {
   description: 'A subcommand to a command',
-  async run (argv, importMeta, { parentName }) {
+  async run (args, meta, { parentName }) {
     const name = parentName + ' one';
 
-    const input = setupCommand(name, one.description, argv, importMeta);
+    const input = setupCommand(name, one.description, args, meta);
 
     if (input) {
+      console.log(`Strict mode: ${input.strict}`);
       console.log(`Got this input: ${input.inputItem}`);
 
       process.exit(input.strict ? 1 : 0);
@@ -34,16 +38,16 @@ export const one = {
 /**
  * @param {string} name
  * @param {string} description
- * @param {readonly string[]} argv
- * @param {ImportMeta} importMeta
+ * @param {string[]} args
+ * @param {import('../../../../index.js').CliMeta} meta
  * @returns {void|CommandContext}
  */
-function setupCommand (name, description, argv, importMeta) {
+function setupCommand (name, description, args, meta) {
   const flags = {
     ...validationFlags,
   };
 
-  const cli = meow(`
+  const cli = meowifyParseArgs(redent(trimNewlines(`
     Usage
       $ ${name} <name>
 
@@ -52,11 +56,11 @@ function setupCommand (name, description, argv, importMeta) {
 
     Examples
       $ ${name} yay
-  `, {
-    argv,
+  `)), {
+    ...meta,
+    args,
     description,
-    importMeta,
-    flags,
+    options: flags,
   });
 
   const {

@@ -3,20 +3,21 @@
 
 import chalk from 'chalk';
 import { MarkdownOrChalk } from 'markdown-or-chalk';
-import meow from 'meow';
 import ora from 'ora';
 import { formatHelpMessage } from '../../../../index.js';
 
 import { outputFlags, validationFlags } from '../../flags/index.js';
 import { InputError } from '../../utils/errors.js';
+// FIXME: Extract into its own module
+import { meowifyParseArgs } from '../../../../lib/meowify-parse-args.js';
 
 /** @type {import('../../../../index.js').CliSubcommand} */
 export const single = {
   description: 'A single command',
-  async run (argv, importMeta, { parentName }) {
+  async run (argv, meta, { parentName }) {
     const name = parentName + ' single';
 
-    const input = setupCommand(name, single.description, argv, importMeta);
+    const input = setupCommand(name, single.description, argv, meta);
 
     const workResult = input && await doTheWork(input.inputItem, input);
 
@@ -39,17 +40,17 @@ export const single = {
 /**
  * @param {string} name
  * @param {string} description
- * @param {readonly string[]} argv
- * @param {ImportMeta} importMeta
+ * @param {string[]} args
+ * @param {import('../../../../index.js').CliMeta} meta
  * @returns {void|CommandContext}
  */
-function setupCommand (name, description, argv, importMeta) {
+function setupCommand (name, description, args, meta) {
   const flags = /** @satisfies {import('../../../../index.js').AnyFlags} */ ({
     ...outputFlags,
     ...validationFlags,
     input: {
       type: 'string',
-      shortFlag: 'i',
+      'short': 'i',
       'default': 'index.js',
       description: 'The input to use',
     },
@@ -59,9 +60,9 @@ function setupCommand (name, description, argv, importMeta) {
       description: 'The subtitle to use',
     },
     count: {
-      type: 'number',
-      shortFlag: 'c',
-      'default': 16,
+      type: 'string',
+      'short': 'c',
+      'default': '16',
       description: 'The subtitle to use',
     },
     logs: {
@@ -71,15 +72,15 @@ function setupCommand (name, description, argv, importMeta) {
     },
   });
 
-  const cli = meow(formatHelpMessage(name, {
+  const cli = meowifyParseArgs(formatHelpMessage(name, {
     examples: ['yay'],
     flags,
     usage: '<name>',
   }), {
-    argv,
+    ...meta,
+    args,
     description,
-    importMeta,
-    flags,
+    options: flags,
   });
 
   const {
