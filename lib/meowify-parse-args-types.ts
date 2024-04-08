@@ -20,7 +20,7 @@ export interface Meta {
 export interface ExtendedParseArgsConfig<Flags extends AnyFlags> extends Omit<ParseArgsConfig, 'strict'|'tokens'> {
   readonly args?: string[] | undefined;
   readonly options?: Flags | undefined;
-
+  readonly returnRemainderArgs?: boolean | undefined;
 }
 
 export interface Options<Flags extends AnyFlags> extends ExtendedParseArgsConfig<Flags>, Meta {}
@@ -54,5 +54,6 @@ export type TypedFlags<Flags extends AnyFlags> = {
 export interface Result<Flags extends AnyFlags> {
   input: string[];
   flags: TypedFlags<Omit<Flags, 'version' | 'help'>>;
+  remainderArgs: string[];
   showHelp: (exitCode?: number) => never;
 }

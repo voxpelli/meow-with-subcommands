@@ -80,6 +80,7 @@
     "typescript": "~5.4.3"
   },
   "dependencies": {
+    "@voxpelli/typed-utils": "^1.7.0",
     "normalize-package-data": "^6.0.0",
     "read-package-up": "^11.0.0"
   }
