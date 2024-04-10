@@ -1,5 +1,7 @@
 # meow-with-subcommands
 
+**Mostly superceded by [`peowly-commands`](https://github.com/voxpelli/peowly-commands)**
+
 Helper for handling subcommands with [meow](https://github.com/sindresorhus/meow)
 
 [![npm version](https://img.shields.io/npm/v/meow-with-subcommands.svg?style=flat)](https://www.npmjs.com/package/meow-with-subcommands)
@@ -68,3 +70,5 @@ TODO: Generate these docs from the JSDoc instead
 ## See also
 
 * [`meow`](https://github.com/sindresorhus/meow)
+* [`peowly`](https://github.com/voxpelli/peowly) – an alternative to `meow`
+* [`peowly-commands`](https://github.com/voxpelli/peowly-commands) - an equivalent of this module, but built on top of `peowly`
