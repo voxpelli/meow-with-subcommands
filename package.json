@@ -71,7 +71,7 @@
     "mocha": "^10.2.0",
     "npm-run-all2": "^6.1.1",
     "ora": "^8.0.1",
-    "pony-cause": "^2.1.10",
+    "pony-cause": "^2.1.11",
     "sinon": "^17.0.1",
     "sinon-chai": "^3.7.0",
     "type-coverage": "^2.27.0",
