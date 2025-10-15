@@ -46,7 +46,7 @@
   "devDependencies": {
     "@types/chai": "^4.3.11",
     "@types/mocha": "^10.0.6",
-    "@types/node": "^18.19.3",
+    "@types/node": "^18.19.130",
     "@types/sinon": "^17.0.2",
     "@types/sinon-chai": "^3.2.12",
     "@voxpelli/eslint-config": "^19.0.0",
@@ -74,8 +74,8 @@
     "pony-cause": "^2.1.10",
     "sinon": "^17.0.1",
     "sinon-chai": "^3.7.0",
-    "type-coverage": "^2.27.0",
-    "typescript": "~5.5.4"
+    "type-coverage": "^2.29.7",
+    "typescript": "~5.9.3"
   },
   "dependencies": {
     "meow": "^12.1.1"
